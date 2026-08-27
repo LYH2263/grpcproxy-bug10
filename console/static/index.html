@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+  <title>go-grpcproxy 管理台</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; background: #0f1419; color: #e7ecf3; }
+    h1 { color: #6cb6ff; }
+    pre { background: #1c2128; padding: 1rem; border-radius: 8px; overflow: auto; }
+    .badge { display: inline-block; padding: 0.2rem 0.6rem; background: #238636; border-radius: 4px; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <h1>gRPC 流式代理 <span class="badge">proxyd</span></h1>
+  <p>Frame Codec · Backpressure · Handler Chain</p>
+  <pre id="stats">加载中…</pre>
+  <script>
+    fetch('/api/stats').then(r => r.text()).then(t => {
+      document.getElementById('stats').textContent = t;
+    }).catch(e => { document.getElementById('stats').textContent = String(e); });
+  </script>
+</body>
+</html>
